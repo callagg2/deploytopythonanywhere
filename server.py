@@ -14,6 +14,7 @@ app = Flask(__name__,static_url_path="", static_folder="staticpages")
 def index():
     return "Welcome to the REST API server!"
 
+
 # To retrieve all the records on the server
 @app.route("/books", methods=["GET"])
 def get_all_books():
@@ -77,7 +78,7 @@ def delete_book(book_id):
 #I can use either Postman (DELETE request) or run the curl command: "curl -X DELETE http://127.0.0.1:5000/books/1" to test this endpoint "/books/id"
 
 @app.route("/invalid", methods=["GET"])
-def index():
+def revert_to_index():
     return redirect(url_for("index")) # this will redirect the user to the index (home) page when they access the /invalid endpoint
 
 # this is to run the flask app, the debug=True parameter is used to enable debug mode, which allows for easier debugging and automatic reloading of the server when code changes are made. The host='<IP_ADDRESS>' parameter is used to specify that the server should listen on all available network interfaces, allowing it to be accessed from other devices on the same network. The port=5000 parameter specifies that the server should listen on port 5000 for incoming requests.
