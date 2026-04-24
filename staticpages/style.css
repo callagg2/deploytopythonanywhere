@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    padding: 20px;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto auto;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+form input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+form button[type="submit"] {
+    background: #4f46e5;
+    color: white;
+}
+
+#cancelEdit {
+    background: #e11d48;
+    color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #4f46e5;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+}
+
+tr:nth-child(even) {
+    background: #f3f4f6;
+}
+
+.action-btn {
+    border: none;
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.edit {
+    color: #2563eb;
+}
+
+.delete {
+    color: #dc2626;
+}
