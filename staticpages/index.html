@@ -1,36 +1,78 @@
-<html>
-    <head>
-        <title> view Books</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-       
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
-        <h1>Books</h1>
-        <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
-        <div>
-            <table class="table" id="bookTable">
-                <tr>
-                        <th>id</th>
-                        <th>Title</th>
-                        <th>
-                            Author
-                        </th>
-                        <th>Price</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                </tr>
-                
-            </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Manager</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Book Manager</span>
         </div>
-        <div id='createUpdateForm' style="display: none">
-                <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> Book</h2>
-                <input type="hidden" name="id"/>
-                Title <input type="text" name="title" /><br/>
-                Author <input type="text" name="author"/> <br/>
-                Price <input type="number" name="price"/> <br/>
-                <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+    </nav>
+
+    <div class="container">
+
+        <!-- Form Card -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white">
+                <h4 class="mb-0">Add / Update Book</h4>
+            </div>
+
+            <div class="card-body">
+                <form id="bookForm" class="row g-3">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Book ID (leave empty to create)</label>
+                        <input type="text" id="bookId" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Title</label>
+                        <input type="text" id="title" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Author</label>
+                        <input type="text" id="author" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Year</label>
+                        <input type="number" id="year" class="form-control" required>
+                    </div>
+
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100" type="submit">Save / Update Book</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
-    </body>
-</html>
+
+        <!-- Table Card -->
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h4 class="mb-0">Books</h4>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-striped" id="booksTable">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Year</th>
+                            <th style="width: 150px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
