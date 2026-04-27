@@ -2,8 +2,8 @@
 #author: Gerry Callaghan
 
 import mysql.connector
-#from testing_dbconfig import config_details
-from dbconfig_pythonanywhere import config_details
+from testing_dbconfig import config_details
+#from dbconfig_pythonanywhere import config_details
 
 
 class BookDAO:

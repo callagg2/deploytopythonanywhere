@@ -1,4 +1,5 @@
 import mysql.connector
+from streamlit import table
 from testing_dbconfig import config_details
 
 
@@ -97,7 +98,53 @@ def show_tables():
         cursor.close()
         connection.close()
 
+# this function will add content to a tables that exist, this is useful for testing
+def add_content_to_table():
+    connection = mysql.connector.connect(
+        host = config_details['host'],
+        user = config_details['user'],
+        password = config_details['password']   
+          )
+    try:
+        sql0 = "Use books1"
+        sql1 = "INSERT INTO books1 (title, author, price) VALUES ('Into The Great Wide Open', 'Tom Petty', 10)"
+        cursor = connection.cursor()
+        cursor.execute(sql0)
+        cursor.execute(sql1)
+        connection.commit()
+        cursor.close()
+        connection.close()
+    except mysql.connector.errors.DatabaseError as e:
+        print(f"\nError adding content to table: {e}")
+        cursor.close()
+        connection.close()
 
+
+# this function will show the content of a table that exists, this is useful for testing
+def show_all_in_table():
+    connection = mysql.connector.connect(
+        host = config_details['host'],
+        user = config_details['user'],
+        password = config_details['password']   
+          )
+    try:
+        sql0 = "Use books1"
+        sql1 = "SELECT * from books1"
+        cursor = connection.cursor()
+        cursor.execute(sql0)
+        cursor.execute(sql1)
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+        cursor.close()
+        connection.close()
+    except mysql.connector.errors.DatabaseError as e:
+        print(f"\nError showing content: {e}")
+        cursor.close()
+        connection.close()
+
+
+# this function will drop a table if it exists, this is useful for testing
 def drop_table():
     connection = mysql.connector.connect(
         host = config_details['host'],
@@ -142,9 +189,11 @@ def drop_database():
 
 
 if __name__ == "__main__":
-#    create_database()
-#    create_table()
+#   create_database()
+#   create_table()
 #   show_databases()
-#    show_tables()
+#   show_tables()
+#    add_content_to_table()
+    show_all_in_table()
 #   drop_table()
-   drop_database()
+#   drop_database()
