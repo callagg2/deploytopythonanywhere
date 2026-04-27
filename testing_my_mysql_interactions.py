@@ -1,5 +1,5 @@
 import mysql.connector
-from dbconfig import config_details
+from testing_dbconfig import config_details
 
 
 # this function will create the database if it doesn't already exist, this is useful for testing, 

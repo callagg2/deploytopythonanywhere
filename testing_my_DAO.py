@@ -3,7 +3,7 @@
 
 from DAO import bookDAO
 import mysql.connector
-from dbconfig import config_details
+from testing_dbconfig import config_details
 
 book = {
     "id":"1",
