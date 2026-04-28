@@ -1,8 +1,14 @@
 body {
   color: #566787;
-  background: #f5f5f5;
+  background: #9b9898;
+  background-image: url("https://images.unsplash.com/photo-1601797758944-d4116e91ab66?q=80&w=1471&auto=format&fit=crop");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; /* key property for full width */
+  background-attachment: fixed; /* optional: keeps image static while scrolling */
+  color: #566787;
   font-family: "Varela Round", sans-serif;
-  font-size: 13px;
+  font-size: 16px;
 }
 .table-wrapper {
   background: #fff;

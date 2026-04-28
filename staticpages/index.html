@@ -24,7 +24,10 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="api.css" />
+    <link 
+    rel="stylesheet" 
+    href="api.css" 
+    />
   </head>
   <body>
     <div class="container">
@@ -48,10 +51,10 @@
         <table class="table table-striped table-hover w-auto">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Title</th>
               <th>Author</th>
               <th>Publisher</th>
-              <th>Genre</th>
               <th>Price</th>
               <th>Actions</th>
             </tr>
@@ -73,7 +76,7 @@
             onsubmit="addBookItem()"
           >
             <div class="modal-header">
-              <h4 class="modal-title">Add Book</h4>
+              <h4 class="modal-title">Add New Book</h4>
               <button
                 type="button"
                 class="close"
@@ -84,6 +87,16 @@
               </button>
             </div>
             <div class="modal-body">
+              <div class="form-group">
+                <label>ID</label>
+                <input
+                  type="text"
+                  id="add-id"
+                  placeholder="Enter Book ID"
+                  class="form-control"
+                  required
+                />
+              </div>
               <div class="form-group">
                 <label>Title</label>
                 <input
@@ -114,16 +127,7 @@
                   required
                 />
               </div>
-              <div class="form-group">
-                <label>Genre</label>
-                <input
-                  type="text"
-                  id="add-genre"
-                  placeholder="Enter Book Genre"
-                  class="form-control"
-                  required
-                />
-              </div>
+              
               <div class="form-group">
                 <label>Price</label>
                 <input
@@ -153,7 +157,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <form action="javascript:void(0);" onsubmit="updateBookItem()">
-            <input type="hidden" id="edit-id" />
+            <!-- <input type="hidden" id="edit-id" /> -->
             <div class="modal-header">
               <h4 class="modal-title">Edit Book</h4>
               <button
@@ -166,6 +170,16 @@
               </button>
             </div>
             <div class="modal-body">
+              <div class="form-group">
+                <label>ID</label>
+                <input
+                  type="text"
+                  id="edit-id"
+                  placeholder="Enter Book ID"
+                  class="form-control"
+                  required
+                />
+              </div>
               <div class="form-group">
                 <label>Title</label>
                 <input
@@ -192,16 +206,6 @@
                   type="text"
                   id="edit-publisher"
                   placeholder="Enter Book Publisher"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Genre</label>
-                <input
-                  type="text"
-                  id="edit-genre"
-                  placeholder="Enter Book Genre"
                   class="form-control"
                   required
                 />

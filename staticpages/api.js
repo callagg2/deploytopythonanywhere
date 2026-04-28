@@ -9,17 +9,17 @@ function getBookItems() {
 }
 
 function addBookItem() {
+  const idInputText = document.getElementById("add-ID");
   const titleInputText = document.getElementById("add-title");
-  const auhtorInputText = document.getElementById("add-author");
+  const authorInputText = document.getElementById("add-author");
   const publisherInputText = document.getElementById("add-publisher");
-  const genreInputText = document.getElementById("add-genre");
   const priceInputText = document.getElementById("add-price");
 
   const item = {
+    id: parseInt(idInputText.value.trim()),
     title: titleInputText.value.trim(),
-    author: auhtorInputText.value.trim(),
+    author: authorInputText.value.trim(),
     publisher: publisherInputText.value.trim(),
-    genre: genreInputText.value.trim(),
     price: parseInt(priceInputText.value.trim())
   };
   console.log(JSON.stringify(item));
@@ -34,10 +34,10 @@ function addBookItem() {
     .then(response => response.json())
     .then(() => {
       getBookItems();
+      idInputText.value = "";
       titleInputText.value = "";
-      auhtorInputText.value = "";
+      authorInputText.value = "";
       publisherInputText.value = "";
-      genreInputText.value = "";
       priceInputText.value = "";
     })
     .catch(error => console.error("Unable to add Book.", error));
@@ -63,18 +63,17 @@ function displayEditForm(id) {
   document.getElementById("edit-title").value = item.title;
   document.getElementById("edit-author").value = item.author;
   document.getElementById("edit-publisher").value = item.publisher;
-  document.getElementById("edit-genre").value = item.genre;
   document.getElementById("edit-price").value = item.price;
 }
 
 function updateBookItem() {
   const itemId = document.getElementById("edit-id").value.trim();
   const item = {
-    id: parseInt(itemId, 10),
+    /*id: parseInt(itemId, 10),*/
+    id: parseInt(document.getElementById("edit-id").value.trim()),
     title: document.getElementById("edit-title").value.trim(),
     author: document.getElementById("edit-author").value.trim(),
     publisher: document.getElementById("edit-publisher").value.trim(),
-    genre: document.getElementById("edit-genre").value.trim(),
     price: parseInt(document.getElementById("edit-price").value.trim())
   };
 
@@ -125,21 +124,20 @@ function _displayItems(data) {
     let tr = tBody.insertRow();
 
     let td1 = tr.insertCell(0);
-    let textTitle = document.createTextNode(item.title);
-
-    td1.appendChild(textTitle);
+    let textid = document.createTextNode(item.id);
+    td1.appendChild(textid);
 
     let td2 = tr.insertCell(1);
-    let textAuthor = document.createTextNode(item.author);
-    td2.appendChild(textAuthor);
+    let textTitle = document.createTextNode(item.title);
+    td2.appendChild(textTitle);
 
     let td3 = tr.insertCell(2);
-    let textPublisher = document.createTextNode(item.publisher);
-    td3.appendChild(textPublisher);
+    let textAuthor = document.createTextNode(item.author);
+    td3.appendChild(textAuthor);
 
     let td4 = tr.insertCell(3);
-    let textGenre = document.createTextNode(item.genre);
-    td4.appendChild(textGenre);
+    let textPublisher = document.createTextNode(item.publisher);
+    td4.appendChild(textPublisher);
 
     let td5 = tr.insertCell(4);
     let textPrice = document.createTextNode(item.price);
