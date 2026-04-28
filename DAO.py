@@ -1,6 +1,7 @@
 # a simple DAO for a database that does CRUD operations on a books table
 #author: Gerry Callaghan
 
+from matplotlib.pylab import record
 import mysql.connector
 from testing_dbconfig import config_details
 #from dbconfig_pythonanywhere import config_details
@@ -71,14 +72,30 @@ class BookDAO:
     # finding one book by id
     def find_book_by_id(self, id):
         mycursor = self.get_cursor()
-        sql = "Select * from books1 where id = %s"
-        values = (id,)
-
-        mycursor.execute(sql, values) # this passes the sql string and the values tuple to the execute function, which will insert the new record into the database. 
-        results = mycursor.fetchone() # this will return a single record from the database that matches the specified id, as a tuple. 
-        # If no record is found, it will return None. If multiple records are found (which shouldn't happen if id is a primary key), 
-        # it will return the first record that matches the criteria.
-        #print(results) # this is just for testing, it will print the record that was found, so you can confirm that the correct record was retrieved from the database.
+        try:
+            sql = "Select * from books1 where id = %s"
+            values = (id,)
+            mycursor.execute(sql, values) # this passes the sql string and the values tuple to the execute function, which will insert the new record into the database. 
+            results = mycursor.fetchone() # this will return a single record from the database that matches the specified id, as a tuple. 
+            # If no record is found, it will return None. If multiple records are found (which shouldn't happen if id is a primary key), 
+            # it will return the first record that matches the criteria.
+            #print(results) # this is just for testing, it will print the record that was found, so you can confirm that the correct record was retrieved from the database.
+            if results:
+                print(results)
+            else:
+                print(f"Book with ID: {id} not found")
+        except Exception as e:
+            print("Error finding book by id:", e)
+            return None
+        except mysql.connector.errors.InternalError as e:
+            print(f"Database error: {e}")
+            return None
+        except mysql.connector.errors.IntegrityError as e:
+            print(f"\nID: {id} is not valid, it must be an integer, error: {e}")
+            return None
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return None
 
         book_found = self.convert_to_dict(results) # this will convert the tuple returned by fetchone() to a dictionary object using the convert_to_dict() function, 
         # so that it can be easily returned in the JSON response.

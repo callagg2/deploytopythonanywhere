@@ -27,7 +27,6 @@ function getOneBookItem() {
   return false; // prevent form reload
 }
 
-
 function findBookForm(id) {
   const item = books.find(item => item.id === id);
   document.getElementById("find-id").value = item.id;
@@ -68,7 +67,7 @@ $('#addBookModal').on('show.bs.modal', function () {
 
   const item = {
     /*id: parseInt(idInputText.value.trim()),*/
-    title: titleInputText.value.trim(),
+    title: `<a href="${titleInputText.value.trim()}">${titleInputText.value.trim()}</a>`,
     author: authorInputText.value.trim(),
     publisher: publisherInputText.value.trim(),
     price: parseInt(priceInputText.value.trim())
@@ -181,8 +180,9 @@ function _displayItems(data) {
     td1.appendChild(textid); // add the book id to the first column of the table
 
     let td2 = tr.insertCell(1);
-    let textTitle = document.createTextNode(item.title);
-    td2.appendChild(textTitle); // add the book title to the second column of the table
+    //let textTitle = document.createTextNode(item.title);
+    //td2.appendChild(textTitle); // add the book title to the second column of the table
+      td2.innerHTML = item.title; // add the book title to the second column of the table, using innerHTML to render the link
 
     let td3 = tr.insertCell(2);
     let textAuthor = document.createTextNode(item.author);

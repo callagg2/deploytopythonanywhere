@@ -37,8 +37,11 @@ def find_book_by_id(id):
     #return jsonify(f"Details for book with ID {id}") # used only for testing the endpoint
     # I can use either Postman (GET request) or run the curl command: "curl http://127.0.0.1:5000/books/1" to test this endpoint "/books"
 
-    return jsonify(bookDAO.find_book_by_id(id))
-
+    book = jsonify(bookDAO.find_book_by_id(id)) # this will call the find_book_by_id() function
+    if book:
+        return book
+    else:
+        return jsonify({"message": f"Book with ID {id} not found"}), 404 # this will return a JSON response with a message indicating that the book was not found, and a 404 status code to indicate that the resource was not found.   
 
 
     # To create a new record on the server

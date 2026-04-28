@@ -107,7 +107,7 @@ def add_content_to_table():
           )
     try:
         sql0 = "Use books1"
-        sql1 = "INSERT INTO books1 (title, author, price) VALUES ('Into The Great Wide Open', 'Tom Petty', 10)"
+        sql1 = "INSERT INTO books1 (title, author, price) VALUES ('https://www.sdwcc.ie', 'Dodder Wheelers', 10)"
         cursor = connection.cursor()
         cursor.execute(sql0)
         cursor.execute(sql1)
@@ -142,6 +142,36 @@ def show_all_in_table():
         print(f"\nError showing content: {e}")
         cursor.close()
         connection.close()
+
+# this function will show the content of a table that exists, this is useful for testing
+def find_one_record_in_table():
+    connection = mysql.connector.connect(
+        host = config_details['host'],
+        user = config_details['user'],
+        password = config_details['password']   
+          )
+    try:
+        sql0 = "Use books1"
+        sql1 = "SELECT * from books1 where id = 2"
+        # just using number 2 for testing because I know it doesn't exist
+        cursor = connection.cursor()
+        cursor.execute(sql0)
+        cursor.execute(sql1)
+        record = cursor.fetchone()
+        if record:
+            print(record)
+        else:
+            print("Book with ID: 2 not found")
+    except mysql.connector.errors.InternalError as e:
+            print("\nID: 2 doesn't exist, error:", {e})   
+    except mysql.connector.errors.DatabaseError as e:
+        print(f"\nError: Record does not exist or error occurred for id: 2 {e}")
+    except mysql.connector.errors.IntegrityError as e:
+            print("\nID: 2 is not valid, it must be an integer, error:", {e})
+    except Exception as e:
+            print("error", {e})
+    cursor.close()
+    connection.close()
 
 
 # this function will drop a table if it exists, this is useful for testing
@@ -193,7 +223,8 @@ if __name__ == "__main__":
 #   create_table()
 #   show_databases()
 #   show_tables()
-#    add_content_to_table()
-    show_all_in_table()
+    add_content_to_table()
+#    show_all_in_table()
+#    find_one_record_in_table()
 #   drop_table()
 #   drop_database()
