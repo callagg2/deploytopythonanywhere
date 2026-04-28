@@ -52,14 +52,14 @@ function _displayfindbook(data) {
 }
 
 function addBookItem() {
-  const idInputText = document.getElementById("add-ID");
+  /*const idInputText = document.getElementById("add-ID");*/
   const titleInputText = document.getElementById("add-title");
   const authorInputText = document.getElementById("add-author");
   const publisherInputText = document.getElementById("add-publisher");
   const priceInputText = document.getElementById("add-price");
 
 $('#addBookModal').on('show.bs.modal', function () {
-  document.getElementById("add-ID").value = "";
+  /*document.getElementById("add-ID").value = "";*/
   document.getElementById("add-title").value = "";
   document.getElementById("add-author").value = "";
   document.getElementById("add-publisher").value = "";
@@ -67,7 +67,7 @@ $('#addBookModal').on('show.bs.modal', function () {
 });
 
   const item = {
-    id: parseInt(idInputText.value.trim()),
+    /*id: parseInt(idInputText.value.trim()),*/
     title: titleInputText.value.trim(),
     author: authorInputText.value.trim(),
     publisher: publisherInputText.value.trim(),
@@ -85,7 +85,7 @@ $('#addBookModal').on('show.bs.modal', function () {
     .then(response => response.json())
     .then(() => {
       getBookItems();
-      idInputText.value = "";
+      /*idInputText.value = "";*/
       titleInputText.value = "";
       authorInputText.value = "";
       publisherInputText.value = "";
@@ -93,6 +93,7 @@ $('#addBookModal').on('show.bs.modal', function () {
     })
     .catch(error => console.error("Unable to add Book.", error));
 }
+
 
 function deleteBookItem() {
   const itemId = document.getElementById("delete-id").value.trim();
